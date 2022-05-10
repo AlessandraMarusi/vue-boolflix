@@ -1,0 +1,21 @@
+//BOOTSTRAP
+@import "~bootstrap/scss/bootstrap.scss";
+
+//FONTAWESOME
+/* @import "~fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "~fortawesome/fontawesome-free/scss/solid.scss";
+@import "~fortawesome"; */
+
+//TYPO
+@import '~@fontsource/open-sans/index.css';
+@import '~@fontsource/open-sans/700.css';
+
+//STYLE
+@import './vars.scss'; 
+
+//RESET
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
