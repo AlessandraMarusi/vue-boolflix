@@ -4,7 +4,7 @@
       <search-bar-comp @performSearch="search"/>
     </header>
     <main>
-      <grid-comp :items="moviesDue" :loader="loading"/>
+      <grid-comp :items="itemsList" :loader="loading"/>
     </main>
   </div>
 </template>
@@ -26,6 +26,7 @@ export default {
       apiPath: 'https://api.themoviedb.org/3/search/',
       movies:[],
       moviesDue:[],
+      itemsList:[],
       tvSeries:[],
       loading: false,
     }
@@ -59,9 +60,8 @@ export default {
     getAll(queryParams){
       Promise.all([this.getMoviesDue(queryParams), this.getSeriesDue(queryParams)]).then((res)=> {
         this.moviesDue = res[0].data.results;
-        console.log(this.moviesDue);
         this.tvSeries = res[1].data.results;
-        console.log(this.tvSeries);
+        this.itemsList = res
       });
     },
   }
