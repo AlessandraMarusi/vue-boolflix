@@ -1,3 +1,5 @@
+// PROVA DI STORE
+
 import Vue from 'vue';
 
 

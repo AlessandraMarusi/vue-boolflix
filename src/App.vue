@@ -4,8 +4,7 @@
       <search-bar-comp @performSearch="search"/>
     </header>
     <main>
-      <grid-comp :items="movies" :loader="loading"/>
-      <button @click="getAll">GET ALL OF THEM. ALLLLLLL</button>
+      <grid-comp :items="moviesDue" :loader="loading"/>
     </main>
   </div>
 </template>
@@ -26,6 +25,8 @@ export default {
       apiKey: '6a7bede61b1cae6d9374c42bac50f865',
       apiPath: 'https://api.themoviedb.org/3/search/',
       movies:[],
+      moviesDue:[],
+      tvSeries:[],
       loading: false,
     }
   },
@@ -56,9 +57,11 @@ export default {
       return axios.get(this.apiPath+'movie', queryParams)
     },
     getAll(queryParams){
-      Promise.all([this.getMoviesDue(queryParams), this.getSeriesDue(queryParams)]).then(function (results) {
-        console.log(results[0]);
-        console.log(results[1]);
+      Promise.all([this.getMoviesDue(queryParams), this.getSeriesDue(queryParams)]).then((res)=> {
+        this.moviesDue = res[0].data.results;
+        console.log(this.moviesDue);
+        this.tvSeries = res[1].data.results;
+        console.log(this.tvSeries);
       });
     },
   }
