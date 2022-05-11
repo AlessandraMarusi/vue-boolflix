@@ -62,7 +62,9 @@ export default {
         this.moviesDue = res[0].data.results;
         this.tvSeries = res[1].data.results;
         this.itemsList = res
-      });
+      }).catch((error)=>{
+        console.log(error);
+      })
     },
   }
   /* 
