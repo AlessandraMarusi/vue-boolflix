@@ -4,7 +4,9 @@
       <search-bar-comp @performSearch="search"/>
     </header>
     <main>
-      <grid-comp :items="itemsList" :loader="loading"/>
+      <!-- <grid-comp :items="itemsList" :loader="loading"/> -->
+      <grid-comp :items="movies" :loader="loading"/>
+      <grid-comp :items="tvSeries" :loader="loading"/>
     </main>
   </div>
 </template>
@@ -25,41 +27,40 @@ export default {
       apiKey: '6a7bede61b1cae6d9374c42bac50f865',
       apiPath: 'https://api.themoviedb.org/3/search/',
       movies:[],
-      moviesDue:[],
       itemsList:[],
       tvSeries:[],
       loading: false,
     }
   },
   methods: {
-    getMovies(queryParams){
+    /* getMovies(queryParams){
       axios.get(this.apiPath+'movie', queryParams).then((res)=>{
         this.movies = res.data.results
         this.loading = false;
       }).catch((error)=>{
         console.log(error);
       })
-    },
+    }, */
     search(text){
       const queryParams = {
         params:{
           api_key: this.apiKey,
-          query: text, //PLACEHOLDER
+          query: text,
         }
       }
       this.loading = true;
       //this.getMovies(queryParams)
       this.getAll(queryParams)
     },
-    getSeriesDue(queryParams){
+    getSeries(queryParams){
       return axios.get(this.apiPath+'tv', queryParams)
     },
-    getMoviesDue(queryParams){
+    getMovies(queryParams){
       return axios.get(this.apiPath+'movie', queryParams)
     },
     getAll(queryParams){
-      Promise.all([this.getMoviesDue(queryParams), this.getSeriesDue(queryParams)]).then((res)=> {
-        this.moviesDue = res[0].data.results;
+      Promise.all([this.getMovies(queryParams), this.getSeries(queryParams)]).then((res)=> {
+        this.movies = res[0].data.results;
         this.tvSeries = res[1].data.results;
         this.itemsList = res
       }).catch((error)=>{
