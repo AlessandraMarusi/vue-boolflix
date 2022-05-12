@@ -1,6 +1,9 @@
 <template>
-    <section class="grid">
-        <ul>
+    <section class="container">
+        <div class="row">
+            <card-comp :item="item" v-for="(item, index) in items" :key="index"/>
+        </div>
+        <!-- <ul>
             <li v-for="item in items" :key="item.id">
                 id: {{item.id}} <br/>
                 titolo originale: {{item.original_title ? item.original_title : item.original_name}} <br/>
@@ -9,27 +12,23 @@
                 voto: {{item.vote_average}} <br/>
                 <img :src="imgBaseUrl+item.poster_path " alt="Poster del film">
             </li>
-        </ul>
+        </ul> -->
     </section>
 </template>
 
 <script>
-
-import CountryFlag from 'vue-country-flag'
+import CardComp from './CardComp.vue'
 /* import {state, actions} from '../store.js' */
 export default {
     name: 'GridComp',
     components: {
-        CountryFlag
+        CardComp
     },
     props:{
         items: Array,
         loading: Boolean,
     },
     data(){
-        return {
-            imgBaseUrl: 'https://image.tmdb.org/t/p/w342'
-        }
         
     },
     methods:{

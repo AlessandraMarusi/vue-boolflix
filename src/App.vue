@@ -72,4 +72,11 @@ export default {
 
 <style lang="scss">
 @import './style/general.scss'; 
+header {
+  background-color: $bgColor;
+  height: 70px;
+}
+body {
+  background-color: $bgColor;
+}
 </style>
