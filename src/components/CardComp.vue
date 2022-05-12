@@ -13,7 +13,9 @@
                 <country-flag :country='languages' size='small'/>
             </div>
             <div class="votes">
-
+                <span>VOTOVOTOVOTO <font-awesome-icon icon="fa-solid fa-star" /><font-awesome-icon icon="fa-regular fa-star" /></span>
+                <font-awesome-icon icon="fa-solid fa-star" />
+                <font-awesome-icon icon="fa-regular fa-star" />
             </div>
             <div class="overview">
                 <span>Overview:</span>
