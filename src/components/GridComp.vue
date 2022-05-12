@@ -7,6 +7,7 @@
             titolo: {{movie.title}} <br/>
             lingua: <country-flag :country='language(movie)' size='small'/> <br/>
             voto: {{movie.vote_average}} <br/>
+            <img :src="imgBaseUrl+movie.poster_path " alt="">
             </li>
       </ul>
       <ul>
@@ -16,6 +17,7 @@
             titolo: {{tvSerie.name}} <br/>
             lingua: <country-flag :country='language(tvSerie)' size='small'/> <br/>
             voto: {{tvSerie.vote_average}} <br/>
+            <img :src="imgBaseUrl+tvSerie.poster_path " alt="">
             </li>
       </ul>
     </div>
@@ -38,6 +40,7 @@ export default {
         return {
             movies: [],
             tvSeries: [],
+            imgBaseUrl: 'https://image.tmdb.org/t/p/w342'
         }
         
     },
@@ -84,10 +87,5 @@ export default {
 <style lang="scss">
 .prova {
     display: flex;
-}
-li {
-    img {
-        width: 10px;
-    }
 }
 </style>
