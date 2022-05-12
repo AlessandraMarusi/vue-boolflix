@@ -4,7 +4,6 @@
       <search-bar-comp @performSearch="search"/>
     </header>
     <main>
-      <!-- <grid-comp :items="itemsList" :loader="loading"/> -->
       <grid-comp :items="movies" :loader="loading"/>
       <grid-comp :items="tvSeries" :loader="loading"/>
     </main>
@@ -33,14 +32,6 @@ export default {
     }
   },
   methods: {
-    /* getMovies(queryParams){
-      axios.get(this.apiPath+'movie', queryParams).then((res)=>{
-        this.movies = res.data.results
-        this.loading = false;
-      }).catch((error)=>{
-        console.log(error);
-      })
-    }, */
     search(text){
       const queryParams = {
         params:{
@@ -49,7 +40,6 @@ export default {
         }
       }
       this.loading = true;
-      //this.getMovies(queryParams)
       this.getAll(queryParams)
     },
     getSeries(queryParams){
@@ -62,7 +52,6 @@ export default {
       Promise.all([this.getMovies(queryParams), this.getSeries(queryParams)]).then((res)=> {
         this.movies = res[0].data.results;
         this.tvSeries = res[1].data.results;
-        this.itemsList = res
       }).catch((error)=>{
         console.log(error);
       })
