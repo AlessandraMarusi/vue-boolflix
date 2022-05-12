@@ -13,9 +13,9 @@
                 <country-flag :country='languages' size='small'/>
             </div>
             <div class="votes">
-                <span>VOTOVOTOVOTO <font-awesome-icon icon="fa-solid fa-star" /><font-awesome-icon icon="fa-regular fa-star" /></span>
-                <font-awesome-icon icon="fa-solid fa-star" />
-                <font-awesome-icon icon="fa-regular fa-star" />
+                <span v-for="index in 5" :key="index"><font-awesome-icon :icon="index <= starVote ? 'fa-solid fa-star' : 'fa-regular fa-star'"/></span> 
+<!--                 <font-awesome-icon icon="fa-solid fa-star" />
+                <font-awesome-icon icon="fa-regular fa-star" /> -->
             </div>
             <div class="overview">
                 <span>Overview:</span>
@@ -66,7 +66,11 @@ export default {
         },
         title(){
             return this.item.title ? this.item.title : this.item.name
-        }
+        },
+        starVote(){
+            console.log(this.item.vote_average)
+            return Math.round(this.item.vote_average/2)
+        },
     }
 }
 
@@ -74,6 +78,9 @@ export default {
 
 <style lang="scss">
 @import '../style/general.scss'; 
+.black {
+    color: black;
+}
 .myCard {
     background-color: $bgColor;
     height: 300px;
@@ -81,6 +88,9 @@ export default {
     position: relative;
     img {
         width: 100%;
+        height: 100%;
+        object-fit: cover;
+
     }
     .infos{
         width: 100%;
